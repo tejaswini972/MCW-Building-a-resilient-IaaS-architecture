@@ -536,18 +536,23 @@ Next, you will create the Recovery Services Vault used to replicate the Web tier
 
 8.  From the Azure portal, select **+Create a resource**, followed by **IT & Management Tools**, then **Automation**.
 
-9.  Complete the **Add Automation Account** blade using the following inputs and then select **Create**:
+9.  Complete the **Add Automation Account** blade using the following inputs and then select **Review + Create**:
 
     - **Name**: Enter a Globally unique name starting with `BCDR`.
     - **Resource group**: Use existing / **ContosoRG2**
     - **Location**: East US 2
-    - **Create Azure Run As account**: Yes
+    
 
-    ![Fields in the Add Automation Account blade are set to the previously defined values.](images/dr-aa.png "Add Automation Account blade")
+    ![Fields in the Add Automation Account blade are set to the previously defined values.](images/ext7.png "Add Automation Account blade")
 
     > **Note:** Azure Automation accounts are only allowed to be created in certain Azure regions, but they can act on any region in Azure (except Government, China or Germany). It is not a requirement to have your Azure Automation account in the same region as the failover resources, but it **CANNOT** be in your primary region.
 
-10. Once the Azure automation account has been created, open the account and select **Modules** under **Shared Resources**.
+10. Once the Azure automation account has been created, open **Run as accounts** under **Account settings**. Click on **Create** under **Azure Run As Account** then select **create**.
+
+    ![Fields in the Add Automation Account blade are set to the previously defined values.](images/ext8.png "Add Automation Account blade")
+
+
+10. Once the Run as account is created, on automation account blade select **Modules** under **Shared Resources**.
 
     ![Under Shared Resources, Modules gallery is selected.](images/ext6.png "Shared Resources section")
 
