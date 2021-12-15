@@ -483,11 +483,11 @@ In this task, you will deploy the resources used by the DR environment. First, y
 
 1.  In a new browser tab, navigate to **https://shell.azure.com**. Open a **PowerShell** session, and on **You have no storage mounted** dialog box click on **Show advanced settings**. Select Create new under Storage account and provide values as below: 
   
-      - **Storage account** : **storage{Deployementid}**
+      - **Storage account** : **storage{uniquestring}**
       
       - **File Share** : **blob**
    
-    > **Note**: Storage account name should be always unique, you can get the Deployement Id  from the **Environment Details** tab.
+    > **Note**: Storage account name should be always unique.
 
     ![Screenshot of the Azure Cloud Shell to create storage account.](images/shell-storage-create.png "Azure Cloud Shell storage account")
 
