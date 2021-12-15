@@ -481,7 +481,15 @@ In this exercise, you will enable a secondary DR site in East US 2. This site wi
 
 In this task, you will deploy the resources used by the DR environment. First, you will deploy a template which will create the network and virtual machines. You will then manually deploy the Recovery Services Vault and Azure Automation account used by Azure Site Recovery.
 
-1.  In a new browser tab, navigate to **https://shell.azure.com**. Open a **PowerShell** session, and create a Cloud Shell storage account if prompted to do so.
+1.  In a new browser tab, navigate to **https://shell.azure.com**. Open a **PowerShell** session, and on **You have no storage mounted** dialog box click on **Show advanced settings**. Select Create new under Storage account and provide values as below: 
+  
+      - **Storage account** : **storage{Deployementid}**
+      
+      - **File Share** : **blob**
+   
+    > **Note**: Storage account name should be always unique, you can get the Deployement Id  from the **Environment Details** tab.
+
+    ![Screenshot of the Azure Cloud Shell to create storage account.](images/shell-storage-create.png "Azure Cloud Shell storage account")
 
     ![Screenshot of the Azure Cloud Shell with URL and PowerShell mode highlighted.](images/dr-cloudshell.png "Azure Cloud Shell")
 
