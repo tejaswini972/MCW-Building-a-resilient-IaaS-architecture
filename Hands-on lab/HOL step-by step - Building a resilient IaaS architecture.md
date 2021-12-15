@@ -492,7 +492,7 @@ In this task, you will deploy the resources used by the DR environment. First, y
     New-AzResourceGroup -Name 'ContosoRG2' -Location 'East US 2'
 
     New-AzSubscriptionDeployment -Name 'Contoso-IaaS-DR' `
-        -TemplateUri 'https://cloudworkshop.blob.core.windows.net/building-resilient-iaas-architecture/lab-resources/june-2020-update/templates/contoso-iaas-dr.json' `
+        -TemplateUri 'https://raw.githubusercontent.com/CloudLabs-MCW/MCW-Building-a-resilient-IaaS-architecture/prod/Hands-on%20lab/contoso-iaas-dr.json' `
         -Location 'East US 2'
     ```
 
