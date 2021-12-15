@@ -6,9 +6,14 @@ Duration: 10 mins
 
 1. Once the environment is provisioned, a virtual machine (JumpVM) and lab guide will get loaded in your browser. Use this virtual machine throughout the workshop to perform the lab.
 
-2. To get the lab environment details, you can select the **Lab Environment** tab. Additionally, the credentials will also be sent to your email address provided during registration. You will see Deployment ID value on **Lab Environment** tab, use it wherever you see SUFFIX or DeploymentID in lab steps. 
+   ![](images/labvm-labguide.png "labvm and labguide in browser")
 
-3. You can also open the Lab Guide on Separate full window by selecting the **Arrow** icon on the upper right corner.
+2. To get the lab environment details, you can select the **Environment Details** tab. Additionally, the credentials will also be sent to your email address provided during registration. Use the given username and password during sign-in.
+
+   ![](images/lab-environment-details.png "lab environment details")
+
+3. You can also open the JumpVM and Lab Guide on Separate full window by selecting the **Split-Window** at the bottom right corner as shown in the above screenshot.
+
 
 ## Login to Azure Portal
 
