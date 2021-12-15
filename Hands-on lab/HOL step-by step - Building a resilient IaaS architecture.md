@@ -547,39 +547,51 @@ Next, you will create the Recovery Services Vault used to replicate the Web tier
 
     > **Note:** Azure Automation accounts are only allowed to be created in certain Azure regions, but they can act on any region in Azure (except Government, China or Germany). It is not a requirement to have your Azure Automation account in the same region as the failover resources, but it **CANNOT** be in your primary region.
 
-10. Once the Azure automation account has been created, open the account and select **Modules gallery** under **Shared Resources**.
+10. Once the Azure automation account has been created, open the account and select **Modules** under **Shared Resources**.
 
-    ![Under Shared Resources, Modules gallery is selected.](images/image46.png "Shared Resources section")
+    ![Under Shared Resources, Modules gallery is selected.](images/ext6.png "Shared Resources section")
 
-11. When the Modules load, search for and select **Az.Accounts**, then select **Import**, then **OK**.
+11. When the Modules load, verify **Az.Accounts**, **Az.Network** and **Az.Compute** modules are imported.
 
-    ![Screenshot showing the Az.Accounts module.](images/dr-azacc.png "Az.Accounts module")
+    > **Note**: If modules are not imported follow the below steps to import:
 
-    ![Import is selected for the Az.Accounts module.](images/dr-azaccimp.png "Az.Accounts import button")
+      - On the **Modules** page select **Browse gallery**
+        
+        ![Under Shared Resources, Modules gallery is selected.](images/ext1.png "Shared Resources section")
+     
+      - Search for **Az.Accounts** and select it.
 
-12. It will take a few minutes to import the module. From the Recovery Services Vault blade, select **Modules** to view the current status, and **Refresh** to monitor progress.
+        ![Under Shared Resources, Modules gallery is selected.](images/ext2.png "Shared Resources section")
+        
+      - Select version and click on **Import**. It will take a few minutes to import the module. From the Recovery Services Vault blade, select **Modules** to view the current status, and **Refresh** to monitor progress.
 
-    ![In the Automation Account blade, under Shared Resources, Modules is selected. The Az.Accounts module has status 'Importing'.](images/dr-azaccstatus.png "Modules blade")
+         ![Under Shared Resources, Modules gallery is selected.](images/ext3.png "Shared Resources section")
+         
+      - Once the Az.Accounts module has been imported, repeat the above steps to import the **Az.Network** and **Az.Compute** modules.
 
-13. Once the Az.Accounts module has been imported, repeat the above steps to import the **Az.Network** and **Az.Compute** modules.
-
-14. Next, navigate back to the **Azure Automation Account** blade and select **Runbooks**, then select **Import a runbook**.
+12. Next, navigate back to the **Azure Automation Account** blade and select **Runbooks**, then select **Import a runbook**.
 
     ![The 'Import a runbook' button is highlighted in Azure Automation.](images/dr-rbimp.png "Import a runbook button")
 
 > **Note**: You must be connected to the **LABVM** to complete the next steps.
 
-15. Select the **Folder** icon on the Import blade and select the file **ASRRunbookSQL.ps1** from the `C:\HOL\` directory on the **LABVM**. The Runbook type should default to **PowerShell Workflow**. Notice that the Name can't be changed. This is the name of the Workflow inside of the Runbook script. Select **Create**.
+13. Select the **Folder** icon on the Import blade and select the file **ASRRunbookSQL.ps1** from the `C:\HOL\` directory on the **LABVM**. The Runbook type should default to **PowerShell Workflow**. Notice that the Name can't be changed. This is the name of the Workflow inside of the Runbook script. Select **Create**.
 
     ![Fields in the 'Import a runbook' blade are set to the previously defined values.](images/dr-rbimp2.png "Import a runbook")
 
-16. Once the Runbook is imported, the runbook editor will load. If you wish, you can review the comments to better understand the runbook. Once you are ready, select **Publish**, followed by **Yes** at the confirmation prompt. This makes the runbook available for use.
+14. Once the Runbook is imported, the runbook editor will load. Make sure the workflow name and runbook name are same if not update workflow name.
+
+    ![Fields in the 'Import a runbook' blade are set to the previously defined values.](images/ext4.png "Import a runbook")
+    
+
+15. Once you are ready, select **Publish**, followed by **Yes** at the confirmation prompt. This makes the runbook available for use.
 
     ![On the top menu of the Edit PowerShell Workflow Runbook blade, Publish is selected.](images/dr-rbpub.png "Publish runbook")
 
-17. Repeat the above steps to import and publish the **ASRRunbookWEB.ps1** runbook.
+16. Repeat the above steps to import and publish the **ASRRunbookWEB.ps1** runbook. Make sure the workflow name and runbook name are same if not update workflow name.
 
-18. Navigate back to **Runbooks**, and make sure that both Runbooks show as **Published**.
+    
+17. Navigate back to **Runbooks**, and make sure that both Runbooks show as **Published**.
 
     ![Two runbooks have authoring status as published: ASRSQLFailover, and ASRWEBFailover.](images/image70.png "Runbooks")
 
@@ -587,11 +599,11 @@ Next, you will create the Recovery Services Vault used to replicate the Web tier
 
 Next, you will create a variable in Azure Automation which contains settings (such as resource group names and VM names) which describe your environment. This information is required by the runbooks you imported. Using variables allows you to avoid hard-coding this information in the runbooks themselves.
 
-19. In your Azure Automation account, select **Variables**, then **Add a variable**.
+18. In your Azure Automation account, select **Variables**, then **Add a variable**.
 
     ![Azure portal showing variables pane in Azure Automation.](images/dr-addvar.png "Add a variable")
 
-20. In the **New Variable** blade, enter `BCDRIaaSPlan` as the variable name. The variable type should be **String**. Paste the following into the variable **Value**, then select **Create**.
+19. In the **New Variable** blade, enter `BCDRIaaSPlan` as the variable name. The variable type should be **String**. Paste the following into the variable **Value**, then select **Create**.
 
     ```json
     {
@@ -613,11 +625,11 @@ Next, you will create a variable in Azure Automation which contains settings (su
 
     ![The 'New Variable' blade is filled in with the variable name and value.](images/dr-newvar.png "New Variable")
 
-21. Notice that the variable **BCDRIaaSPlan** has been created. 
+20. Notice that the variable **BCDRIaaSPlan** has been created. 
 
     ![The 'BCDRIaaSPlan' variable is shown in the Automation Account.](images/dr-var.png "Automation Account variables")
 
-22. Before continuing, check that the template deployment you started at the beginning of this task has been completed. From the Azure portal home page, select **Subscriptions**, select your subscription, then select **Deployments**. 
+21. Before continuing, check that the template deployment you started at the beginning of this task has been completed. From the Azure portal home page, select **Subscriptions**, select your subscription, then select **Deployments**. 
 
     ![The 'Contoso-IaaS-DR' template deployment shows as successful.](images/dr-deploy-ok.png "Template status")
 
