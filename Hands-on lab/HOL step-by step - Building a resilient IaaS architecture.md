@@ -1235,35 +1235,29 @@ In this task we will validate high availability for both the Web and SQL tiers.
 
 In this task, you will validate failover of the Contoso application from Central US to East US 2. The failover is orchestrated by Azure Site Recovery using the recovery plan you configured earlier. It includes failover of both the web tier (creating new Web VMs from the replicated data) and SQL Server tier (failover to the SQLVM3 asynchronous replica). The failover process is fully automated, with custom steps implemented using Azure Automation runbooks which are triggered by the Recovery Plan.
 
-1.  Using the Azure portal, open the **ContosoRG1** resource group. Navigate to the Front Door resource, locate Frontend Host URL and open it in a new browser tab. it to ensure that the application is up and running from the Primary Site.
+1.  From a new browser tab, open the Azure portal, then navigate to the **BCDRRSV** Recovery Services Vault located in the **ContosoRG2** resource group.
 
-    ![The Frontend host link is called out.](images/image318.png "Frontend host")
-
-    Keep this browser tab open, you will return to it later in the lab.
-
-2.  From a new browser tab, open the Azure portal, then navigate to the **BCDRRSV** Recovery Services Vault located in the **ContosoRG2** resource group.
-
-3.  Select **Recovery Plans (Site Recovery)** in the **Manage** area, then select **BCDRIaaSPlan**.
+2.  Select **Recovery Plans (Site Recovery)** in the **Manage** area, then select **BCDRIaaSPlan**.
 
     ![In the Recovery Services vault blade, BCDRIaaSPlan is selected in the Recovery Plans view.](images/v-dr1.png "Recovery Plans")
 
-4. Select **Failover**.
+3. Select **Failover**.
 
     ![In the BCDRIaaSPlan blade, the Failover button is highlighted.](images/v-dr2.png "BCDRIaaSPlan blade")
 
-5. On the warning about No Test Failover, select **I understand the risk, Skip test failover**.
+4. On the warning about No Test Failover, select **I understand the risk, Skip test failover**.
 
     ![A warning displays that no test failover has been done in the past 180 days, and recommends that you do one before a failover. At the bottom, the I understand and skip test failover checkbox is selected.](images/v-dr3.png "Failover warning")
 
-6. Review the Failover direction. Notice that **From** is the **Primary** site, and **To** is the **Secondary** site. Select **OK**.
+5. Review the Failover direction. Notice that **From** is the **Primary** site, and **To** is the **Secondary** site. Select **OK**.
 
     ![Call outs in the Failover blade point to the From and To fields.](images/v-dr4.png "Failover blade")
 
-7. After the Failover is initiated, close the Failover blade and navigate to **Site Recovery Jobs**. Select the **Failover** job to monitor the progress.
+6. After the Failover is initiated, close the Failover blade and navigate to **Site Recovery Jobs**. Select the **Failover** job to monitor the progress.
 
     ![Failover is selected in the Site Recover jobs blade.](images/v-dr5.png "Site Recover jobs blade")
 
-8. You can monitor the progress of the Failover from this panel.
+7. You can monitor the progress of the Failover from this panel.
 
     ![Output is selected on the Job blade, and information displays in the Output blade.](images/v-dr6.png "Job and Output blades")
 
@@ -1271,47 +1265,47 @@ In this task, you will validate failover of the Contoso application from Central
     >
     > ![Screenshot of the ASRSQLFailover Azure Automation runbook job. The status of Zero warnings and zero errors is highlighted.](images/v-dr7.png "Automation Job status")
 
-9.  Once the Failover job has finished, it should show as *Successful* for all tasks. This may take more than 15 minutes.
+8.  Once the Failover job has finished, it should show as *Successful* for all tasks. This may take more than 15 minutes.
 
     ![Under the Site Recovery Job, the status for the job steps all show as successful.](images/v-dr8.png "Job status")
 
-10. Select **Resource groups** and select **ContosoRG1**. Open **WebVM1** and notice that it currently shows as **Status: Stopped (deallocated).** This shows that failover automation has stopped the VMs at the **Primary** site.
+9. Select **Resource groups** and select **ContosoRG1**. Open **WebVM1** and notice that it currently shows as **Status: Stopped (deallocated).** This shows that failover automation has stopped the VMs at the **Primary** site.
 
     ![A call out points to the Status of Stopped (deallocated) in the Virtual machine blade. The VM location is Central US.](images/v-dr9.png "Virtual machine blade")
 
     > **Note:** Do not select Start! The VM will be restarted automatically by ASR during failback.
 
-11. Move back to the Resource group and select the **ContosoWebLBPrimaryIP** Public IP address. Copy the DNS name and paste it into a new browser tab. The web site will be unreachable at the Primary location, since the Web VMs at this location have been stopped by ASR during failover.
+10. Move back to the Resource group and select the **ContosoWebLBPrimaryIP** Public IP address. Copy the DNS name and paste it into a new browser tab. The web site will be unreachable at the Primary location, since the Web VMs at this location have been stopped by ASR during failover.
 
-12. In the Azure portal, move to the **ContosoRG2** resource group. Locate the **WebVM1** in the resource group and select to open. Notice that **WebVM1** is running in the **Secondary** site.
+11. In the Azure portal, move to the **ContosoRG2** resource group. Locate the **WebVM1** in the resource group and select to open. Notice that **WebVM1** is running in the **Secondary** site.
 
     ![In the Virtual Machine blade, a call out points to the status of WebVM1, which is now running.](images/v-dr10.png "Virtual Machine blade")
 
-13. Move back to the **ContosoRG2** resource group and select the **ContosoWebLBSecondaryIP** Public IP address. Copy the DNS name and paste it into a new browser tab. The Contoso application is now responding from the **Secondary** site. Make sure to select the current Policy Offerings to ensure that there is connectivity to the SQL Always-On group that was also failed over in the background.
+12. Move back to the **ContosoRG2** resource group and select the **ContosoWebLBSecondaryIP** Public IP address. Copy the DNS name and paste it into a new browser tab. The Contoso application is now responding from the **Secondary** site. Make sure to select the current Policy Offerings to ensure that there is connectivity to the SQL Always-On group that was also failed over in the background.
 
-14. Return to the browser tab pointing to the Contoso application at the Front Door URL. Refresh the page. The site loads immediately, from the DR site. Web site users accessing the service via Front Door are automatically routed to the current available site, so there is no change in how they access the site even though it is failed over. There **will** be downtime as the failover happens, but once the site is back online the experience for them will be no different than when it is running in the **Primary** site.
+13. Return to the browser tab pointing to the Contoso application at the Front Door URL. Refresh the page. The site loads immediately, from the DR site. Web site users accessing the service via Front Door are automatically routed to the current available site, so there is no change in how they access the site even though it is failed over. There **will** be downtime as the failover happens, but once the site is back online the experience for them will be no different than when it is running in the **Primary** site.
 
     ![The Contoso Insurance PolicyConnect webpage displays. The URL is from Azure Front Door.](images/dr-fd-app.png "Contoso Insurance PolicyConnect webpage")
 
     > **Optional task**: If you wish, you can log in to **SQLVM3** and open the SQL Management Studio to review the Failed over **BCDRAOG**. You will see that **SQLVM3** which is running in the **Secondary** site is now the Primary Replica.
 
-15. Now that you have successfully failed over, you need to configure ASR for Failback. Move back to the **BCDRSRV** Recovery Service Vault using the Azure portal. Select **Recovery Plans** on the ASR dashboard. The **BCDRIaaSPlan** will show as **Failover completed.** 
+14. Now that you have successfully failed over, you need to configure ASR for Failback. Move back to the **BCDRSRV** Recovery Service Vault using the Azure portal. Select **Recovery Plans** on the ASR dashboard. The **BCDRIaaSPlan** will show as **Failover completed.** 
 
     ![Recovery Plans list, with the 'Failover Completed' status of the BCDRIaaSPlan highlighted.](images/v-dr11.png "Recovery Plans")
 
-16. Select the BCDRIaasPlan plan. Notice that now two (2) VMs are shown in the **Target** tile.
+15. Select the BCDRIaasPlan plan. Notice that now two (2) VMs are shown in the **Target** tile.
 
     ![In the Recovery blade, the Target tile has the number 2.](images/v-dr12.png "Recovery plan blade")
 
-17. Select **Re-protect**.
+16. Select **Re-protect**.
 
     ![Recovery Plan blade with Re-protect button highlighted.](images/v-dr13.png "Re-protect button")
 
-18. On the **Re-protect** screen review the configuration and then select **OK**.
+17. On the **Re-protect** screen review the configuration and then select **OK**.
 
     ![Screenshot of the Re-protect blade.](images/v-dr14.png "Re-protect blade")
 
-19. The portal will submit a deployment. This process will take up to 30 minutes to commit the failover and then synchronize WebVM1 and WebVM2 with the Recovery Services Vault. Once this process is complete you will be able to failback to the primary site.
+18. The portal will submit a deployment. This process will take up to 30 minutes to commit the failover and then synchronize WebVM1 and WebVM2 with the Recovery Services Vault. Once this process is complete you will be able to failback to the primary site.
 
     > **Note:** You need to wait for the re-protect process to complete before continuing with the failback. You can check the status of the Re-protect using the Site Recovery Jobs area of the BCDRSRV.
     >
