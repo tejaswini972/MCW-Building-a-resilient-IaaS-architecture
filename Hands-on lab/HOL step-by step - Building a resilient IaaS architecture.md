@@ -114,7 +114,7 @@ A template will be used to save time. You will configure each tier in subsequent
 
     >**Note**: Please ensure virtual machine's ADVM1, SQLVM1 and WEBVM1 are in running state before proceeding with the lab. If not, select **Resources(1)** tab and click on start buttons of virtual machine's **ADVM1(2), SQLVM1(3) and WEBVM1(4)**.
     
-    ![To start virtual machines from resources tab.](images/building-resources-start.png "start vm's".)
+    ![To start virtual machines from resources tab.](images/building-resources-start.png "start vms.")
 
     [![Button to deploy the Contoso High Availability resource template to Azure.](https://aka.ms/deploytoazurebutton "Deploy the Contoso HA resources to Azure")](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fcloudworkshop.blob.core.windows.net%2Fbuilding-resilient-iaas-architecture%2Flab-resources%2Fjune-2020-update%2Ftemplates%2Fcontoso-iaas-ha.json)
 
