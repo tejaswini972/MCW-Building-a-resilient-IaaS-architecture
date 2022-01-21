@@ -112,6 +112,8 @@ A template will be used to save time. You will configure each tier in subsequent
 
 1.  Select the **Deploy to Azure** button below to open the Azure portal and launch the template deployment for the additional infrastructure components that will be used to enable high availability for the Contoso application. Log in to the Azure portal using your subscription credentials if you are prompted to do so.
 
+    >**Note**: Please ensure virtual machine's AD1, WEB1 and SQL1 are running before proceeding with the lab.
+
     [![Button to deploy the Contoso High Availability resource template to Azure.](https://aka.ms/deploytoazurebutton "Deploy the Contoso HA resources to Azure")](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fcloudworkshop.blob.core.windows.net%2Fbuilding-resilient-iaas-architecture%2Flab-resources%2Fjune-2020-update%2Ftemplates%2Fcontoso-iaas-ha.json)
 
 2.  Complete the Custom deployment blade as follows:
@@ -120,8 +122,6 @@ A template will be used to save time. You will configure each tier in subsequent
     - Location: Central US
 
     Select **Review + Create** and then **Create** to deploy resources.
-    
-    >**Note**: Please don't stop any Virtual machine's while the deployment is in progress.
 
     ![The custom deployment screen with ContosoRG1 as the resource group.](images/ha-deploy1.png "Custom deployment")
 
