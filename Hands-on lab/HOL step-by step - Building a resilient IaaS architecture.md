@@ -120,6 +120,8 @@ A template will be used to save time. You will configure each tier in subsequent
     - Location: Central US
 
     Select **Review + Create** and then **Create** to deploy resources.
+    
+    >**Note**: Please don't stop any Virtual machine's while the deployment is in progress.
 
     ![The custom deployment screen with ContosoRG1 as the resource group.](images/ha-deploy1.png "Custom deployment")
 
