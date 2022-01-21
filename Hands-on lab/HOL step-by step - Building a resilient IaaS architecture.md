@@ -110,9 +110,11 @@ In this task, you will deploy additional web, database and domain controller VMs
 
 A template will be used to save time. You will configure each tier in subsequent exercises in this lab.
 
-1.  Select the **Deploy to Azure** button below to open the Azure portal and launch the template deployment for the additional infrastructure components that will be used to enable high availability for the Contoso application. Log in to the Azure portal using your subscription credentials if you are prompted to do so.
+>**Note**: Please ensure virtual machine's ADVM1, SQLVM1 and WEBVM1 are in running state before proceeding with the lab. If not, select **Resources(1)** tab and click on start buttons of virtual machine's **ADVM1(2), SQLVM1(3) and WEBVM1(4)**.
+    
+   ![To start virtual machines from resources tab.](images/building-resources-start.png "start vms.")
 
-    >**Note**: Please ensure virtual machine's AD1, WEB1 and SQL1 are in running state before proceeding with the lab.
+1.  Select the **Deploy to Azure** button below to open the Azure portal and launch the template deployment for the additional infrastructure components that will be used to enable high availability for the Contoso application. Log in to the Azure portal using your subscription credentials if you are prompted to do so.
 
     [![Button to deploy the Contoso High Availability resource template to Azure.](https://aka.ms/deploytoazurebutton "Deploy the Contoso HA resources to Azure")](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fcloudworkshop.blob.core.windows.net%2Fbuilding-resilient-iaas-architecture%2Flab-resources%2Fjune-2020-update%2Ftemplates%2Fcontoso-iaas-ha.json)
 
