@@ -583,9 +583,9 @@ Next, you will create the Recovery Services Vault used to replicate the Web tier
 
 > **Note**: You must be connected to the **LABVM** to complete the next steps.
 
-13. Select the **Folder** icon on the Import blade and select the file **ASRRunbookSQL.ps1** from the `C:\HOL\` directory on the **LABVM**. The Runbook type should default to **PowerShell Workflow**. Notice that the Name can't be changed. This is the name of the Workflow inside of the Runbook script. Select **Create**.
+13. Select the **Folder** icon on the Import blade and select the file **ASRRunbookSQL.ps1** from the `C:\HOL\` directory on the **LABVM**. The Runbook type should default to **PowerShell Workflow**. Notice that the Name can't be changed. This is the name of the Workflow inside of the Runbook script. Select **Import**.
 
-    ![Fields in the 'Import a runbook' blade are set to the previously defined values.](images/dr-rbimp2.png "Import a runbook")
+    ![Fields in the 'Import a runbook' blade are set to the previously defined values.](images/import-runbook.png "Import a runbook")
 
 14. Once the Runbook is imported, the runbook editor will load. Make sure the workflow name and runbook name are same if not update workflow name.
 
