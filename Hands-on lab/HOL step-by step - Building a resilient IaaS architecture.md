@@ -989,6 +989,8 @@ In this task, you will use the Front Door approach to configure a highly availab
     - **Backend host header**: Paste in the DNS name for the **ContosoWebLBSecondaryIP** Public IP Address (in the **ContosoRG2** resource group).
     - **Priority**: 2
 
+   > **Note** : Sometimes there is a possibility that **ContosoWebLBSecondaryIP** will not be listed in the **Backend host name** dropdown list. In this case, you can go ahead and create the backend pool with only one backend. Once the **ContosoPool** is created it will be listed under backend pools, select it and try to add backend **ContosoWebLBSecondaryIP** again by performing Step 6.
+   
     ![The Add a backend pane has the previously specified values set.](images/dr-fd-be2.png "Add a backend pane")
 
 7. Select **Add** to create the backend pool.
