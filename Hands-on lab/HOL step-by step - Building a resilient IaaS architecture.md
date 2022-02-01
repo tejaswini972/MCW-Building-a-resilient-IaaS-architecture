@@ -110,6 +110,10 @@ In this task, you will deploy additional web, database and domain controller VMs
 
 A template will be used to save time. You will configure each tier in subsequent exercises in this lab.
 
+>**Note**: Please ensure virtual machine's ADVM1, SQLVM1 and WEBVM1 are in running state before proceeding with the lab. If not, select **Resources(1)** tab and click on start buttons of virtual machine's **ADVM1(2), SQLVM1(3) and WEBVM1(4)**.
+    
+   ![To start virtual machines from resources tab.](images/building-resources-start.png "start vms.")
+
 1.  Select the **Deploy to Azure** button below to open the Azure portal and launch the template deployment for the additional infrastructure components that will be used to enable high availability for the Contoso application. Log in to the Azure portal using your subscription credentials if you are prompted to do so.
 
     [![Button to deploy the Contoso High Availability resource template to Azure.](https://aka.ms/deploytoazurebutton "Deploy the Contoso HA resources to Azure")](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FCloudLabs-MCW%2FMCW-Building-a-resilient-IaaS-architecture%2Fprod%2FHands-on%2520lab%2Fcontoso-ha.json)
@@ -174,7 +178,6 @@ In this task, you will build a Windows Failover Cluster and configure SQL Always
     - **Location**: Any location in your area that is **NOT** your Primary or Secondary site, for example **West US 2**
     - **Performance**: Standard
     - **Replication**: Zone-redundant storage (ZRS)
-    - **Access tier (default)**: Hot
 
     ![Fields in the Create storage account blade are set to the previously defined settings.](images/ha-storage.png "Create storage account blade")
 
@@ -448,11 +451,11 @@ In this task, you will configure a high-availability web tier. This comprises tw
 
 5.  Return to the Azure portal and navigate to the **ContosoWebLBPrimary** load balancer blade. Select **Backend pools** and open **BackEndPool1**.
 
-    ![Azure portal showing path to BackEndPool1 on ContosoWebLBPrimary.](images/ha-web-bepool.png "Backend pool select path")
+    ![Azure portal showing path to BackEndPool1 on ContosoWebLBPrimary.](images/contoso-lb-1.png "Backend pool select path")
 
 6.  In the **BackendPool1** blade, select **VNet1 (ContosoRG1)** as the Virtual network. Then select **+ Add** and select the two web VMs. Select **Save**.
 
-    ![Azure portal showing WebVM1 and WebVM2 being added to the backend pool.](images/ha-web-poolvms.png "Backend pool VMs")
+    ![Azure portal showing WebVM1 and WebVM2 being added to the backend pool.](images/contoso-backendpool.png "Backend pool VMs")
 
 7.  You will now check that the Contoso sample application is working when accessed through the load-balancer. In the Azure portal, navigate to the **ContosoWebLBPrimaryIP** resource. This is the public IP address attached to the web tier load balancer front end. Copy the **DNS name** to the clipboard.
 
@@ -580,9 +583,9 @@ Next, you will create the Recovery Services Vault used to replicate the Web tier
 
 > **Note**: You must be connected to the **LABVM** to complete the next steps.
 
-13. Select the **Folder** icon on the Import blade and select the file **ASRRunbookSQL.ps1** from the `C:\HOL\` directory on the **LABVM**. The Runbook type should default to **PowerShell Workflow**. Notice that the Name can't be changed. This is the name of the Workflow inside of the Runbook script. Select **Create**.
+13. Select the **Folder** icon on the Import blade and select the file **ASRRunbookSQL.ps1** from the `C:\HOL\` directory on the **LABVM**. The Runbook type should default to **PowerShell Workflow**. Notice that the Name can't be changed. This is the name of the Workflow inside of the Runbook script. Select **Import**.
 
-    ![Fields in the 'Import a runbook' blade are set to the previously defined values.](images/dr-rbimp2.png "Import a runbook")
+    ![Fields in the 'Import a runbook' blade are set to the previously defined values.](images/import-runbook.png "Import a runbook")
 
 14. Once the Runbook is imported, the runbook editor will load. Make sure the workflow name and runbook name are same if not update workflow name.
 
