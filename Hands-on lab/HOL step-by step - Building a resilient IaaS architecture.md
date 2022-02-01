@@ -492,7 +492,7 @@ In this task, you will deploy the resources used by the DR environment. First, y
    
     > **Note**: Storage account name should be always unique.
 
-    ![Screenshot of the Azure Cloud Shell to create storage account.](images/shell-storage-create.png "Azure Cloud Shell storage account")
+    ![Screenshot of the Azure Cloud Shell to create storage account.](images/shell-storage-create.1.png "Azure Cloud Shell storage account")
 
     ![Screenshot of the Azure Cloud Shell with URL and PowerShell mode highlighted.](images/dr-cloudshell.png "Azure Cloud Shell")
 
